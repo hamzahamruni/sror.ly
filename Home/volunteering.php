@@ -6,7 +6,6 @@ include('../include/db_connection.php');
 include('../functions/fun_volunteering.php');
 $today = gmdate("Y-m-d", time() + 2 * 3600);
 $msg=0;
-session_start();
 
 if(isset($_POST['insert_volunteering']))
 {

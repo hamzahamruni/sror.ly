@@ -1,7 +1,10 @@
 <header class="main-header clearfix" role="header" dir="rtl">
     <div class="logo">
-      <a href="#" >       على سُرر متقابلين
-</a>
+    <img src="assets/images/logo.png" style="width: 120px;height: 100px;" >
+
+      <a href="index.php" style="font-size: 25px;" >
+        على سُرر متقابلين
+      </a>
 
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
@@ -25,4 +28,6 @@
         <li ><a href="donation.php" class="external" > تبرع الآن</a></li>
       </ul>
     </nav>
+
+
 </header>

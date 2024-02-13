@@ -90,15 +90,7 @@ function upload_img_to_folder($name,$FOLDER)
     {
         // Allow certain file formats
         $allowTypes = array('jpg','png','jpeg','gif','pdf');
-        print_r($_FILES);
-        echo '<br>$_FILES[$name]["name"] = '.$_FILES[$name]["name"];
-        echo '<br>$_FILES[$name]["tmp_name"] = '.$_FILES[$name]["tmp_name"];
-        echo '<br>targetFilePath = '.$targetFilePath;
-        echo '<br>FOLDER = '.$FOLDER;
-        echo '<br>fileName = '.$fileName;
-        echo '<br>fileType = '.$fileType;
 
-        die();
         if(in_array($fileType, $allowTypes))
         {
             // Upload file to server
@@ -306,9 +298,138 @@ function get_delivery()
     array_pop ( $delivery );
     return $delivery;
 }
+function insert_achievements($title,$detiles,$date,$img)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    achievements(title,detiles,date,img)
+    VALUES
+    ('$title','$detiles','$date','$img')";
 
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_achievements = mysqli_insert_id($connection);
+        return $id_achievements;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_achievements($id_achievements)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    achievements
+    WHERE id_achievements = '$id_achievements'
+    ";
 
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_achievements;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_achievements()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  achievements   ORDER BY id_achievements DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $achievements[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $achievements );
+    return $achievements;
+}
+function insert_activities($name,$link,$detiles,$img)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    activities(name,link,detiles,img)
+    VALUES
+    ('$name','$link','$detiles','$img')";
 
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_activities = mysqli_insert_id($connection);
+        return $id_activities;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_activities($id_activities)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    activities
+    WHERE id_activities = '$id_activities'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_activities;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_activities()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  activities   ORDER BY id_activities DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $activities[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $activities );
+    return $activities;
+}
+function insert_campaigns($name,$detiles,$img)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    campaigns(name,detiles,img)
+    VALUES
+    ('$name','$detiles','$img')";
+
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_campaigns = mysqli_insert_id($connection);
+        return $id_campaigns;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_campaigns($id_campaigns)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    campaigns
+    WHERE id_campaigns = '$id_campaigns'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_campaigns;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_campaigns()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  campaigns   ORDER BY id_campaigns DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $campaigns[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $campaigns );
+    return $campaigns;
+}
 
 
 

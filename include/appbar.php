@@ -1,8 +1,12 @@
   <!--header-->
 <header class="main-header clearfix" role="header">
+    <div class="logo">
+    <img src="../assets/images/logo.png" style="width: 130px;height: 100px;border-radius: 80%;" >
 
-    <div class="logo" >
-        <a href="home.php" style="font-size: 20px;">     على سُرر متقابلين</a>
+      <a href="../index.php" style="font-size: 25px;" >
+        على سُرر متقابلين
+      </a>
+
     </div>
     <a href="#menu" class="menu-link" ><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
@@ -24,9 +28,16 @@
                 <li><a href="needy_view.php" class="external">عرض المحتاجين</a></li>
                 </ul>
             </li>
+            <li class="has-submenu"><a href="#section2">     الاقسام </a>
+                <ul class="sub-menu">
+                <li><a href="volunteering.php" class="external"> الخدمات و النشطات </a></li>
+                <li><a href="achievements.php" class="external">الانجازات</a></li>
+                <li><a href="activities.php" class="external">النشاطات</a></li>
+                <li><a href="campaigns.php" class="external">الحملات</a></li>
+                </ul>
+            </li>
 
 
-            <li><a  href="volunteering.php" class="external"> المشاريع و البرامج</a></li>
 
 
             <li class="has-submenu"><a href="#section2">   إدارة  المستخدمين </a>

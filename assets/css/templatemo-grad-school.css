@@ -174,7 +174,7 @@ a.menu-link { display: none; }
 
 .main-header {
 	/*  background-color: #5f7d66; */
-    background-color: #ffa5d2;
+    background-color: #0f0108;
     height: 80px;
     max-height: 200px;
 
@@ -182,14 +182,13 @@ a.menu-link { display: none; }
     z-index: 12;
     width: 100%;
     top: 0;
-    border-bottom: 2px solid #fff;
+    /* border-bottom: 2px solid #fff; */
 
 }
 
 .main-header .logo {
-    float: left;
+    float: right;
     line-height: 80px;
-    padding-left: 60px;
 }
 
 .main-header .logo a {
@@ -204,8 +203,8 @@ a.menu-link { display: none; }
 }
 
 .main-menu {
-    float: right;
-    padding-right: 60px;
+    float: left;
+    padding-right: 10px;
 }
 
 .main-menu li {
@@ -243,7 +242,7 @@ a.menu-link { display: none; }
 .main-menu li .sub-menu {
     position: absolute;
     width: 160px;
-    background-color: #ffa5d2;
+    background-color: #0f0108;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s;

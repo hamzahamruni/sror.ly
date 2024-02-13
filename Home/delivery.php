@@ -1,5 +1,5 @@
 
-  <?php
+<?php
  include('../include/db_connection.php');
  include('../functions/fun_volunteering.php');
 if(isset($_POST['insert_delivery']))

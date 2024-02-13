@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+
 <!--
 TemplateMo 557 Grad School
 https://templatemo.com/tm-557-grad-school
@@ -40,7 +42,9 @@ https://templatemo.com/tm-557-grad-school
 }
 </style>
   </head>
-<body>
+<body >
+
+
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -74,12 +78,14 @@ https://templatemo.com/tm-557-grad-school
   <!--header-->
 
 
-  <?php
-  include('appbar.php')
-  ?>
-    <header class="main-header clearfix" role="header" dir="rtl" style="width:auto;top:50%;right:-60;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
-       <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
-      <nav id="menu" class="main-nav" role="navigation">
+
+     <?php
+      include('appbar.php')
+      ?>
+
+    <header class="main-header clearfix" dir="rtl" style="width:auto;top:50%;right:-20;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
+
+      <nav  >
         <ul class="main-menu">
           <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
           <li ><a href="donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
@@ -89,6 +95,7 @@ https://templatemo.com/tm-557-grad-school
 
 
   <section class="section courses" data-section="section4" dir="ltr">
+
           <div class="col-md-12 col-xs-12">
             <div class="continer centerIt">
               <div >
@@ -103,59 +110,58 @@ https://templatemo.com/tm-557-grad-school
           <div>
           <hr><br><br>
 
-          <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="section-heading">
-                    <h3 style="color : black">
-                  اقسام
-                  </h3>
-                  </div>
-                </div>
-
-                <div class="owl-carousel owl-theme">
-
-
-                  <div id="itemm" style="width: 400px;margin-right: 100px">
-                    <div class="item" style="text-align: center"   >
-                      <img src='assets/images/pp1.jpg' alt="Course #2">
-                      <div class="down-content" style="direction: rtl;">
-
-                        <center>
-                        <a href='#' style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
-                          &nbsp &nbsp &nbsp &nbsp
-                          <a href="donation.php" style="color: #ffa5d2;">تبرع الان <i class="fa fa-angle-double-up"></i></a>
-                      </center>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                  <div id="itemm" style="width: 400px;">
-                    <div class="item" style="text-align: center"   >
-                      <img src='assets/images/pp1.jpg' alt="Course #2">
-                      <div class="down-content" style="direction: rtl;">
-
-                        <center>
-                        <a href='#' style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
-                          &nbsp &nbsp &nbsp &nbsp
-                          <a href="donation.php" style="color: #ffa5d2;">تبرع الان <i class="fa fa-angle-double-up"></i></a>
-                      </center>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-
-              </div>
-          </div>
-
     <?php
     if(isset($_SESSION['id_user']))
     {
     ?>
+      <div id="demo" dir="rtl">
+            <div class="container" style="max-width:100% !important;position: relative;text-align: center;color: white">
+              <div class="row">
+                <div class="span12">
+                  <div id="owl-demo" class="owl-carousel" style="width:170% !important;">
+
+                    <div class="item" >
+                      <a href="./Home/delivery_view.php" style="color: #ffa5d2;">
+                        <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الاعلامي</div>
+                        <center>
+                            &nbsp &nbsp &nbsp &nbsp
+                            الاعلامي <i class="fa fa-angle-double-up"></i>
+                        </center>
+                        </a>
+                    </div>
+
+                    <div class="item" >
+                      <a href="./Home/delivery_view.php" style="color: #ffa5d2;">
+                        <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">النقل و التوصيل</div>
+
+                        <center>
+                            &nbsp &nbsp &nbsp &nbsp
+                            النقل و التوصيل  <i class="fa fa-angle-double-up"></i>
+                        </center>
+                        </a>
+                    </div>
+
+                    <div class="item" >
+                      <a href="./Home/needy_view.php" style="color: #ffa5d2;">
+                        <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">المحتاجين</div>
+                        <center>
+                            &nbsp &nbsp &nbsp &nbsp
+                            المحتاجين  <i class="fa fa-angle-double-up"></i>
+                        </center>
+                        </a>
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr><br><br>
 
     <div class="container-fluid">
       <div class="row">
@@ -202,12 +208,60 @@ https://templatemo.com/tm-557-grad-school
     }
     ?>
 
+    <div id="demo" dir="rtl">
+      <div class="container" style="max-width:100% !important;position: relative;text-align: center;color: white">
+        <div class="row">
+          <div class="span12">
+          <div id="owl-demo" class="owl-carousel" style="width:170% !important;">
+
+
+
+              <div class="item" >
+                <a href="campaigns.php" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الحملات</div>
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                      الحملات <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+
+              <div class="item" >
+                <a href="volunteering.php" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">النشطات</div>
+
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                      النشطات  <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+
+              <div class="item" >
+                <a href="achievements.php" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الانجازات</div>
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                       الانجازات  <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
             <h3>
-            اقسام النشاطات
+            اخر النشاطات
             </h3>
           </div>
         </div>
@@ -391,8 +445,36 @@ https://templatemo.com/tm-557-grad-school
   interval: 2000
 })
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+    <!-- Demo -->
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    </style>
+
+
+    <script>
+    $(document).ready(function() {
+      $("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        items : 100,
+        itemsDesktop : [1199,3],
+        itemsDesktopSmall : [979,3]
+      });
+
+    });
+    </script>
+
+
+
 </body>
 </html>
