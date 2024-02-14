@@ -51,7 +51,7 @@ https://templatemo.com/tm-557-grad-school
       <nav  >
         <ul class="main-menu">
           <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
-          <li ><a href="donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
+          <li ><a href="select_donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
         </ul>
       </nav>
     </header>
@@ -83,18 +83,12 @@ https://templatemo.com/tm-557-grad-school
                <div class="down-content" style="direction: rtl;">
                  <h4><?php echo $volunteering->name?></h4>
                   <hr>
-                 <p><?php echo $volunteering->detiles;?></p>
-                 <center>
-                 <form id="contact" action="" method="post" >
-                      <div class="col-md-12">
-                        <fieldset>
-                          <input  type="number" name="id_campaigns" value="<?php echo $volunteering->id_campaigns;?>" hidden>
-                          <button style="background-color:red;color:white" type="submit" name="delete_campaigns" id="form-submit" class="button">حدف</button>
-                        </fieldset>
-                      </div>
+                 <p>
+                  <?php echo substr($volunteering->detiles, 0, 30);?>
+                  <a href=<?php echo "view_campaigns.php?id_campaigns=".$volunteering->id_campaigns;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
+                </p>
+                  <a href=<?php echo "select_donation.php";?> style="color: #ffa5d2;"> تبرع الان <i class="fa fa-angle-double-up"></i></a>
 
-                    </form>
-                </center>
                </div>
              </div>
              </div>

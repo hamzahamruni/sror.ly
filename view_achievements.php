@@ -2,10 +2,10 @@
  include("include/db_connection.php");
  include('functions/fun_orphans_sponsorships.php');
  include('functions/fun_volunteering.php');
-if(isset($_GET['id_volunteering']))
+if(isset($_GET['id_achievements']))
 {
-    $volunteering =  get_volunteering_id($_GET['id_volunteering'],0);
-    if(!$volunteering)
+    $achievements =  get_achievements_id($_GET['id_achievements'],0);
+    if(!$achievements)
     {
         header('Location: index.php');
     }
@@ -63,19 +63,16 @@ https://templatemo.com/tm-557-grad-school
 
 
         <div class="col-md-12">
-            <img src='<?php echo 'Home/uploads_img/'.$volunteering->img; ?>' width="500" alt="Course #2">
+            <img src='<?php echo 'Home/uploads_img/'.$achievements->img; ?>' width="500" alt="Course #2">
             <fieldset>
               <h4 style="color: black;" >
-              <?php echo $volunteering->title; ?>
+              <?php echo $achievements->title; ?>
               </h4>
-              <h4 style="color: black;" >
-              <?php echo $volunteering->date; ?>
-              </h4>
+              <h4><?php echo $achievements->date?></h4>
             <hr>
             <p style="color: black;font-size:20px">
-            <?php echo $volunteering->note; ?>
+            <?php echo $achievements->detiles; ?>
             </p>
-
 
 
 

@@ -3,8 +3,9 @@
   include('functions/fun_orphans_sponsorships.php');
   include('functions/fun_volunteering.php');
   insert_vister();
-  $volunteerings =  get_volunteering('اقسام الخدمات',0);
-  $volunteerings_ =  get_volunteering('اقسام النشطات',0);
+  $volunteerings = get_activities();;
+  $campaigns =  get_campaigns();
+  $volunteerings_ =  get_volunteering('اقسام الخدمات',0);
   session_start();
 
   $medias =  get_medias();
@@ -45,6 +46,26 @@ https://templatemo.com/tm-557-grad-school
 <body >
 
 
+
+  <!--header-->
+
+
+
+     <?php
+      include('appbar.php')
+      ?>
+
+
+    <header class="main-header clearfix" dir="rtl" style="width:auto;top:50%;right:-20;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
+
+      <nav  >
+        <ul class="main-menu">
+          <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
+          <li ><a href="select_donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
+        </ul>
+      </nav>
+    </header>
+
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -54,16 +75,16 @@ https://templatemo.com/tm-557-grad-school
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100 h-11" src="./assets/images/pp1.jpg" alt="First slide">
+              <img class="d-block w-100 h-11" src="./assets/images/pp1.jpg"  height="700" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100  h-11" src="./assets/images/pp2.jpg" alt="Second slide">
+              <img class="d-block w-100  h-11" src="./assets/images/pp2.jpg" height="700" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100  h-11 " src="./assets/images/pp3.jpg" alt="Third slide">
+              <img class="d-block w-100  h-11 " src="./assets/images/pp3.jpg" height="700" alt="Third slide">
             </div>
 			    <div class="carousel-item">
-              <img class="d-block w-100  h-11" src="./assets/images/pp4.jpg" alt="Third slide">
+              <img class="d-block w-100  h-11" src="./assets/images/pp4.jpg" height="700" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -75,23 +96,6 @@ https://templatemo.com/tm-557-grad-school
             <span class="sr-only">Next</span>
           </a>
         </div>
-  <!--header-->
-
-
-
-     <?php
-      include('appbar.php')
-      ?>
-
-    <header class="main-header clearfix" dir="rtl" style="width:auto;top:50%;right:-20;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
-
-      <nav  >
-        <ul class="main-menu">
-          <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
-          <li ><a href="donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
-        </ul>
-      </nav>
-    </header>
 
 
   <section class="section courses" data-section="section4" dir="ltr">
@@ -114,19 +118,28 @@ https://templatemo.com/tm-557-grad-school
     if(isset($_SESSION['id_user']))
     {
     ?>
-      <div id="demo" dir="rtl">
-            <div class="container" style="max-width:100% !important;position: relative;text-align: center;color: white">
-              <div class="row">
-                <div class="span12">
-                  <div id="owl-demo" class="owl-carousel" style="width:170% !important;">
+            <div id="demo" dir="ltr">
+              <div class="container" style="width:100% !important;position: relative;text-align: center;color: white">
+                <div class="section-heading">
+                      <center>
+                      <h3 style="color : black">
+                      اقسام الخدمات
+                      </h3>
+                      </center>
+                      </div>
+                </div>
+                <div class="">
+                <center>
+                  <div class="span12">
+                  <div class="owl-carousel" style="width:100% !important;">
 
-                    <div class="item" >
-                      <a href="./Home/delivery_view.php" style="color: #ffa5d2;">
+                  <div class="item" >
+                      <a href="#" style="color: #ffa5d2;">
                         <img src="assets/images/pp1.jpg" alt="Owl Image" >
                         <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الاعلامي</div>
                         <center>
                             &nbsp &nbsp &nbsp &nbsp
-                            الاعلامي <i class="fa fa-angle-double-up"></i>
+                            الاعلامي  <i class="fa fa-angle-double-up"></i>
                         </center>
                         </a>
                     </div>
@@ -155,67 +168,38 @@ https://templatemo.com/tm-557-grad-school
                     </div>
 
 
+
+
                   </div>
 
                 </div>
+                </center>
               </div>
             </div>
           </div>
-          <hr><br><br>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h3 style="color : black">
-          اقسام الخدمات
-          </h3>
-          </div>
-        </div>
-        <div class="owl-carousel owl-theme">
-         <?php
-         foreach($volunteerings as $volunteering)
-         {
-          $img = 'Home/uploads_img/'.$volunteering->img;
-          ?>
-           <div id="itemm" >
-           <div class="item" style="text-align: center"   >
-             <img src="<?php echo $img;?>" alt="Course #2">
-             <div class="down-content" style="direction: rtl;">
-               <h4><?php echo $volunteering->title;?></h4>
-               <p><?php echo $volunteering->date;?></p>
-                <hr>
-               <p><?php echo $volunteering->note;?></p>
-              <center>
-                <a href=<?php echo "view_volunteering.php?id_volunteering=".$volunteering->id_volunteering;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
-                &nbsp &nbsp &nbsp &nbsp
-                <a href="donation.php" style="color: #ffa5d2;">تبرع الان <i class="fa fa-angle-double-up"></i></a>
-             </center>
-             </div>
-           </div>
-           </div>
-          <?php
-         }
-          ?>
-        </div>
-      </div>
-    </div>
+
+
     <br> <hr><br>
-    <div class="btn_view">
 
-    </div>
     <?php
     }
     ?>
 
-    <div id="demo" dir="rtl">
-      <div class="container" style="max-width:100% !important;position: relative;text-align: center;color: white">
-        <div class="row">
+    <div id="demo" dir="ltr">
+      <div class="container" style="width:100% !important;position: relative;text-align: center;color: white">
+        <div class="section-heading">
+               <center>
+              <h3 style="color : black">
+              اقسام النشاطات
+              </h3>
+              </center>
+              </div>
+        </div>
+        <div class="">
+        <center>
           <div class="span12">
-          <div id="owl-demo" class="owl-carousel" style="width:170% !important;">
-
-
-
+          <div class="owl-carousel" style="width:100% !important;">
               <div class="item" >
                 <a href="campaigns.php" style="color: #ffa5d2;">
                   <img src="assets/images/pp1.jpg" alt="Owl Image" >
@@ -240,6 +224,27 @@ https://templatemo.com/tm-557-grad-school
               </div>
 
               <div class="item" >
+                <a href="select_donation.php" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">التبرع</div>
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                      التبرع  <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+          </center>
+        </div>
+        <hr>
+        <div class="">
+          <center>
+            <div class="span12">
+            <div class="owl-carousel" style="width:100% !important;">
+
+              <div class="item" >
                 <a href="achievements.php" style="color: #ffa5d2;">
                   <img src="assets/images/pp1.jpg" alt="Owl Image" >
                   <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الانجازات</div>
@@ -249,9 +254,36 @@ https://templatemo.com/tm-557-grad-school
                   </center>
                   </a>
               </div>
+
+              <div class="item" >
+                <a href="#" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الكفالات الشهرية </div>
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                      الكفالات الشهرية  <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+
+              <div class="item" >
+                <a href="#" style="color: #ffa5d2;">
+                  <img src="assets/images/pp1.jpg" alt="Owl Image" >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الاستتمار</div>
+                  <center>
+                      &nbsp &nbsp &nbsp &nbsp
+                      الاستتمار  <i class="fa fa-angle-double-up"></i>
+                  </center>
+                  </a>
+              </div>
+
+
             </div>
+
           </div>
+          </center>
         </div>
+
       </div>
     </div>
     <hr>
@@ -267,23 +299,58 @@ https://templatemo.com/tm-557-grad-school
         </div>
         <div class="owl-carousel owl-theme"  >
          <?php
-         foreach($volunteerings_ as $volunteering)
-         {
+          foreach($volunteerings as $volunteering)
+          {
           $img = 'Home/uploads_img/'.$volunteering->img;
           ?>
-          <div id="itemm" >
+            <div id="itemm" >
+            <div class="item" style="text-align: center"   >
+              <img src="<?php echo $img;?>" alt="Course #2">
+              <div class="down-content" style="direction: rtl;">
+                <h4><?php echo $volunteering->name;?></h4>
+                <p>
+                  <?php echo substr($volunteering->detiles, 0, 30);?>
+                <a href=<?php echo "view_activities.php?id_activities=".$volunteering->id_activities;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
+                </p>
+              </div>
+            </div>
+            </div>
+          <?php
+          }
+          ?>
+        </div>
+      </div>
+    </div>
+          <br>
+          <hr>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h3>
+            اخر الحملات
+            </h3>
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme"  >
+         <?php
+         foreach($campaigns as $campaign)
+         {
+          $img ='Home/uploads_img/3.jpg';
+          $img = 'Home/uploads_img/'.$campaign->img;
+          ?>
+           <div id="itemm" >
            <div class="item" style="text-align: center"   >
              <img src="<?php echo $img;?>" alt="Course #2">
-             <div class="down-content" style="direction: rtl;" ">
-               <h4 ><?php echo $volunteering->title;?></h4>
-               <p ><?php echo $volunteering->date;?></p>
-               <hr>
-               <p><?php echo $volunteering->note;?></p>
-              <center>
-                <a style="color: #ffa5d2;" href=<?php echo "view_volunteering.php?id_volunteering=".$volunteering->id_volunteering;?> "> المزيد <i class="fa fa-angle-double-left"></i></a>
-                &nbsp &nbsp &nbsp &nbsp
-                <a href="donation.php" style="color: #ffa5d2;">تبرع الان <i class="fa fa-angle-double-up"></i></a>
-             </center>
+             <div class="down-content" style="direction: rtl;">
+               <h4><?php echo $campaign->name?></h4>
+                <hr>
+               <p><?php echo $campaign->detiles;?></p>
+               <p>
+                <?php echo substr($campaign->detiles, 0, 30);?>
+                <a href=<?php echo "view_campaigns.php?id_campaigns=".$campaign->id_campaigns;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
+              </p>
+
              </div>
            </div>
            </div>
@@ -293,6 +360,8 @@ https://templatemo.com/tm-557-grad-school
         </div>
       </div>
     </div>
+
+
 
   </section>
 <section class="section coming-soon" data-section="section3">
@@ -446,7 +515,9 @@ https://templatemo.com/tm-557-grad-school
 })
     </script>
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
     <!-- Demo -->

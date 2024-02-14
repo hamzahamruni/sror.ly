@@ -29,22 +29,43 @@
   <?php
 include('include/db_connection.php');
 include("functions/fun_volunteering.php");
-if(isset($_POST['insert_hadia']))
+if(isset($_POST['insert_donation']))
 {
   extract($_POST);
   if(
     isset($name) && $name !=''
  && isset($phone) && $phone !=''
- && isset($name_to) && $name_to !=''
- && isset($phone_to) && $phone_to !=''
- && isset($tag) && ($tag==1 || $tag==0)
+ && isset($type) && $type !=''
+ && isset($physically)
  && isset($amount)
+ && isset($type_amount)
+ && isset($credit)
+ && isset($phone_credit)
+ && isset($address)  && $address !=''
  && isset($receipt)  && $receipt !=''
   )
   {
-
-    $insert_hadia = insert_hadia($name,$phone,$name_to,$phone_to,$tag,$amount,$receipt);
-    if($insert_hadia)
+    if($type == 'مادي')
+    {
+      $amount = 'null';
+      $type_amount = '';
+      $credit = 'null';
+      $phone_credit = '';
+    }
+    else if($type == 'نقدي')
+    {
+      $physically = '';
+      $credit = 'null';
+      $phone_credit = '';
+    }
+    else if($type == 'رصيد')
+    {
+      $physically = '';
+      $amount = 'null';
+      $type_amount = '';
+    }
+    $insert_donation = insert_donation($name,$phone,$type,$physically,$amount,$type_amount,$credit,$phone_credit,$address,$receipt);
+    if($insert_donation)
     {
       ?>
       <script>
@@ -75,105 +96,74 @@ if(isset($_POST['insert_hadia']))
 <body>
 
 
+  <!--header-->
   <?php
-    include('appbar.php')
+  include('appbar.php')
   ?>
-
-  <section class="section contact" data-section="section4" style="padding-top: 100px;">
-    <div class="container-fluid">
+  <section class="section coming-soon" data-section="section3" style="background-color: #faf7f9">
+    <div class="container">
       <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="continer centerIt">
+            <div>
+            <br><br>
+              <br><br>
+              <center>
+              <h4 style="color: black;">
+                  نوع
 
-        <div class="col-md-12">
-          <center>
-          <h3>🎁 هدية</h3>
-          </center>
-        </div>
-        <div class="col-md-2 "></div>
-        <div class="col-md-8">
-          <form id="contact" action="" method="post" onsubmit="return validate_dontaion();">
-            <div class="row">
-                <div class="col-md-6">
-                  <fieldset>
-                  <label> اسم الهدي </label>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="الإسم" maxlength="50" required="">
-                  </fieldset>
-                </div>
-                <div class="col-md-6">
-                  <fieldset>
-                  <label id="lphone" >رقم الهاتف</label>
-                    <input name="phone" type="text" onkeyup="validatePhone();" class="form-control" id="phone"  maxlength="10" placeholder="091xxxxxxx" required="">
-                  </fieldset>
-                </div>
+                <em>  التبرع </em>
+              </h4>
+              </center>
 
-                <div class="col-md-6">
-                  <fieldset>
-                  <label> اسم الهدي اليه</label>
-                    <input name="name_to" type="text" class="form-control" id="name_to" placeholder="الإسم" maxlength="50" required="">
-                  </fieldset>
-                </div>
-                <div class="col-md-6">
-                  <fieldset>
-                  <label id="lphone_to" >رقم الهاتف المهدي اليه</label>
-                    <input name="phone_to" type="text" onkeyup="validatePhone_to();" class="form-control" id="phone_to"  maxlength="10" placeholder="091xxxxxxx" required="">
-                  </fieldset>
-                </div>
+              <div class="counter" dir="rtl">
 
+                <a href="donation.php">
+                  <div class="days" style="background-color: #0022ff;">
+                    <i class="fa fa-home"></i>
+                    <span style="color: white;font-size:20px;">
+                      الاعانة الاسرية
+                    </span>
+                  </div>
+                </a>
+                <a href="donation.php">
+                  <div class="hours" style="background-color: #7321bf;">
+                    <i class="fa fa-home"></i>
+                    <span style="color: white;font-size:20px;">
+                      التموين الغداءي
+                    </span>
+                  </div>
+                </a>
 
-                <div class="col-md-6">
-                    <label>  ابلاغ المهدي اليه باسم المهدي</label>
-                    <div class="row">
-                        <div class="col-md-6">
-                        <label> ابلاغ
-                        <input name="tag" value="1" type="radio" class="form-control col-md-5" id="tag" style="display: inline;" required="">
-                        </label>
-                        </div>
-
-                        <div class="col-md-6">
-                        <label> بدون ابلاغ
-                        <input name="tag" value="0" type="radio" class="form-control col-md-3" id="tag" style="display: inline;" required="">
-                        </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6"  >
-                    <div class="row">
-                      <div class="col-md-6">
-                        <fieldset>
-                        <label id="lamount" > القيمة</label>
-                          <input name="amount" type="number"  class="form-control" id="amount"  min="1" max="100000000" placeholder="دينار" required="">
-                        </fieldset>
-                      </div>
-                        <div class="col-md-6">
-                            <fieldset>
-                                <label> طريقة الاستلام </label>
-                                <select name="receipt" class="form-control" id="receipt" required="">
-                                <option class="form-control">   </option>
-                                <option class="form-control"  value="مندوب">مندوب</option>
-                                <option class="form-control"  value="حضور للمؤسسة">  حضور  للمؤسسة</option>
-
-                                </select>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
+                <a href="donation.php">
+                  <div class="minutes" style="background-color: green;">
+                    <i class="fa fa-home"></i>
+                    <span style="color: white;font-size:20px;">
+                      تجهيز العرايس
+                    </span>
+                  </div>
+                </a>
+                <a href="donation.php">
+                  <div class="seconds" style="background-color: red;">
+                    <i class="fa fa-graduation-cap"></i>
+                    <span style="color: white;font-size:20px;">
+                      الدعم الدراسي
+                    </span>
+                  </div>
+                </a>
 
 
-            <div class="col-md-5"> </div>
-              <div class="col-md-6">
 
-                <fieldset>
-                  <button name="insert_hadia" value="insert_hadia" type="submit" id="form-submit" class="button"> اهداء 🎁</button>
-                </fieldset>
+
               </div>
-
-          </form>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
-    <br><br>
+    <br><br><br><br><br> <br><br> <br><br> <br><br>
   </section>
+
 
 
 
@@ -184,7 +174,7 @@ if(isset($_POST['insert_hadia']))
             <div class="col-md-12">
                 <p><i class="fa fa-copyright"></i>  2023 حقوق النشر محفوظة
 
-                | تم صناعة الموقع الإلكتروني بواسطة : <a href="" rel="sponsored" target="_parent"> sror.ly  </a></p>
+                | تم صناعة الموقع الإلكتروني بواسطة : <a href="" style="color:white" rel="sponsored" target="_parent"> sror.ly  </a></p>
             </div>
             </div>
         </div>
@@ -203,33 +193,79 @@ if(isset($_POST['insert_hadia']))
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
-      function validatePhone_to()
+      function type_donation()
+      {
+        var type_donation = document.getElementById("type").value;
+        if(type_donation==='مادي')
         {
-            // regex pattern for phone number
-            const patnn=/^[0-9]{10}$/;
-            if(document.getElementById("phone_to").value == "")
-            {
-              document.getElementById("lphone_to").style.color="red";
-              //document.getElementById("codemsg").innerHTML="The CODE OR COLOR Is Empty";
-              v=false;
+          document.getElementById("view_amount").style.display='none'
+          document.getElementById('amount').required=false;
+          document.getElementById('type_amount').required=false;
 
-            }
-            else{
-              if(patnn.test(document.getElementById("phone_to").value) == false)
-              {
-                document.getElementById("lphone_to").style.color="red";
-                //document.getElementById("codemsg").innerHTML="CODE OR COLOR is Wrong ";
-                v=false;
-              }
+          document.getElementById("view_phone_credit").style.display='none'
+          document.getElementById('phone_credit').required=false;
+          document.getElementById('credit').required=false;
 
-              else
-              {
-              document.getElementById("lphone_to").style.color="black";
-            //	document.getElementById("codemsg").innerHTML=" ";
-              }
-
-            }
+          document.getElementById("view_physically").style.display='block'
+          document.getElementById('physically').required=true;
         }
+        else if(type_donation==='نقدي')
+        {
+          document.getElementById('view_physically').style.display='none';
+          document.getElementById('physically').required=false;
+
+          document.getElementById("view_phone_credit").style.display='none'
+          document.getElementById('phone_credit').required=false;
+          document.getElementById('credit').required=false;
+
+          document.getElementById("view_amount").style.display='block'
+          document.getElementById('amount').required=true;
+          document.getElementById('type_amount').required=true;
+
+        }
+        else if(type_donation==='رصيد')
+        {
+          document.getElementById('view_physically').style.display='none';
+          document.getElementById('physically').required=false;
+
+          document.getElementById("view_amount").style.display='none'
+          document.getElementById('amount').required=false;
+          document.getElementById('type_amount').required=false;
+
+          document.getElementById("view_phone_credit").style.display='block'
+          document.getElementById('phone_credit').required=true;
+          document.getElementById('credit').required=true;
+
+
+        }
+      }
+      function validate_phone_credit()
+      {
+          // regex pattern for phone number
+          const patnn=/^[0-9]{10}$/;
+          if(document.getElementById("phone_credit").value == "")
+          {
+            document.getElementById("lphone_credit").style.color="red";
+            //document.getElementById("codemsg").innerHTML="The CODE OR COLOR Is Empty";
+            v=false;
+
+          }
+          else{
+            if(patnn.test(document.getElementById("phone_credit").value) == false)
+            {
+              document.getElementById("lphone_credit").style.color="red";
+              //document.getElementById("codemsg").innerHTML="CODE OR COLOR is Wrong ";
+              v=false;
+            }
+
+            else
+            {
+              document.getElementById("lphone_credit").style.color="black";
+          //	document.getElementById("codemsg").innerHTML=" ";
+            }
+
+          }
+      }
         function validatePhone()
         {
             // regex pattern for phone number

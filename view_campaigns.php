@@ -2,10 +2,10 @@
  include("include/db_connection.php");
  include('functions/fun_orphans_sponsorships.php');
  include('functions/fun_volunteering.php');
-if(isset($_GET['id_volunteering']))
+if(isset($_GET['id_campaigns']))
 {
-    $volunteering =  get_volunteering_id($_GET['id_volunteering'],0);
-    if(!$volunteering)
+    $campaigns =  get_campaigns_id($_GET['id_campaigns']);
+    if(!$campaigns)
     {
         header('Location: index.php');
     }
@@ -63,22 +63,18 @@ https://templatemo.com/tm-557-grad-school
 
 
         <div class="col-md-12">
-            <img src='<?php echo 'Home/uploads_img/'.$volunteering->img; ?>' width="500" alt="Course #2">
+            <img src='<?php echo 'Home/uploads_img/'.$campaigns->img; ?>' width="500" alt="Course #2">
             <fieldset>
               <h4 style="color: black;" >
-              <?php echo $volunteering->title; ?>
-              </h4>
-              <h4 style="color: black;" >
-              <?php echo $volunteering->date; ?>
+              <?php echo $campaigns->name; ?>
               </h4>
             <hr>
             <p style="color: black;font-size:20px">
-            <?php echo $volunteering->note; ?>
+            <?php echo $campaigns->detiles; ?>
             </p>
-
-
-
-
+            <h4  >
+            <a href=<?php echo "select_donation.php";?> style="color: #ffa5d2;"> تبرع الان <i class="fa fa-angle-double-up"></i></a>
+            </h4>
             </fieldset>
           </div>
         </div>

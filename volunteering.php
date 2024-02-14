@@ -3,10 +3,9 @@
   include('functions/fun_orphans_sponsorships.php');
   include('functions/fun_volunteering.php');
   insert_vister();
-  $volunteerings =  get_volunteering('اقسام الخدمات',0);
-  $volunteerings_ =  get_volunteering('اقسام النشطات',0);
+  $volunteerings = get_activities();;
 
-  $medias =  get_medias();
+
   // echo '<pre>';print_r($medias);echo '</pre>';die();
 ?>
   <head>
@@ -52,7 +51,7 @@ https://templatemo.com/tm-557-grad-school
       <nav  >
         <ul class="main-menu">
           <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
-          <li ><a href="donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
+          <li ><a href="select_donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
         </ul>
       </nav>
     </header>
@@ -72,29 +71,25 @@ https://templatemo.com/tm-557-grad-school
         </div>
 
         <div class="owl-carousel owl-theme"  >
-         <?php
-         foreach($volunteerings_ as $volunteering)
-         {
+        <?php
+          foreach($volunteerings as $volunteering)
+          {
           $img = 'Home/uploads_img/'.$volunteering->img;
           ?>
-          <div id="itemm" >
-           <div class="item" style="text-align: center"   >
-             <img src="<?php echo $img;?>" alt="Course #2">
-             <div class="down-content" style="direction: rtl;" ">
-               <h4 ><?php echo $volunteering->title;?></h4>
-               <p ><?php echo $volunteering->date;?></p>
-               <hr>
-               <p><?php echo $volunteering->note;?></p>
-              <center>
-                <a style="color: #ffa5d2;" href=<?php echo "view_volunteering.php?id_volunteering=".$volunteering->id_volunteering;?> "> المزيد <i class="fa fa-angle-double-left"></i></a>
-                &nbsp &nbsp &nbsp &nbsp
-                <a href="donation.php" style="color: #ffa5d2;">تبرع الان <i class="fa fa-angle-double-up"></i></a>
-             </center>
-             </div>
-           </div>
-           </div>
+            <div id="itemm" >
+            <div class="item" style="text-align: center"   >
+              <img src="<?php echo $img;?>" alt="Course #2">
+              <div class="down-content" style="direction: rtl;">
+                <h4><?php echo $volunteering->name;?></h4>
+                <p>
+                  <?php echo substr($volunteering->detiles, 0, 30);?>
+                <a href=<?php echo "view_activities.php?id_activities=".$volunteering->id_activities;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
+                </p>
+              </div>
+            </div>
+            </div>
           <?php
-         }
+          }
           ?>
         </div>
       </div>

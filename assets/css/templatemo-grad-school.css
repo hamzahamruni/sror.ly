@@ -6,19 +6,19 @@ https://templatemo.com/tm-557-grad-school
 
 */
 
-@import url('../fonts/Cairo/Cairo-VariableFont_slnt\,wght.ttf');
+@import url('../fonts/Almarai/Almarai-Regular.ttf');
 @import url(fontawesome.css);
 /* @import url("<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">"); */
 @font-face
 {
-    font-family: Cairo;
+    font-family: Almarai;
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/Cairo/Cairo-VariableFont_slnt\,wght.ttf) format("truetype");
+    src: url(../fonts/Almarai/Almarai-Regular.ttf) format("truetype");
 }
 body {
     /* font-family: 'Montserrat', sans-serif; */
-    font-family: Cairo !important;
+    font-family: Almarai !important;
 }
 
 /* Basic */
@@ -692,7 +692,7 @@ section.coming-soon .continer .counter .seconds {
   section.coming-soon .continer .counter .hours,
   section.coming-soon .continer .counter .minutes,
   section.coming-soon .continer .counter .seconds {
-    font-size: 26px;
+
   }
 
   section.coming-soon .continer .counter .days .value,

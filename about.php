@@ -42,7 +42,7 @@ https://templatemo.com/tm-557-grad-school
 
 
 
-  <section class="section contact" data-section="section4" style="padding: 100px;">
+  <section class="section contact" data-section="section4" style="padding-top: 100px;">
     <div class="container-fluid">
       <div class="row">
 

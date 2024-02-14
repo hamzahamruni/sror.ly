@@ -342,6 +342,14 @@ function get_achievements()
     array_pop ( $achievements );
     return $achievements;
 }
+function get_achievements_id($id_achievements)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM achievements WHERE  id_achievements = '$id_achievements' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $volunteering = mysqli_fetch_object ( $query_view ) ;
+    return $volunteering;
+}
 function insert_activities($name,$link,$detiles,$img)
 {
     global $connection;
@@ -376,6 +384,14 @@ function delete_activities($id_activities)
     {
         return false;
     }
+}
+function get_activities_id($id_activities,$del)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM activities WHERE  id_activities = '$id_activities' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $volunteering = mysqli_fetch_object ( $query_view ) ;
+    return $volunteering;
 }
 function get_activities()
 {
@@ -430,7 +446,14 @@ function get_campaigns()
     array_pop ( $campaigns );
     return $campaigns;
 }
-
+function get_campaigns_id($id_campaigns)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM campaigns WHERE  id_campaigns = '$id_campaigns' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $volunteering = mysqli_fetch_object ( $query_view ) ;
+    return $volunteering;
+}
 
 
 

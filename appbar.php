@@ -25,7 +25,7 @@
 
 
         <li ><a href="hadia.php" class="external" >  هدية 🎁</a></li>
-        <li ><a href="donation.php" class="external" > تبرع الآن</a></li>
+        <li ><a href="select_donation.php" class="external" > تبرع الآن</a></li>
       </ul>
     </nav>
 
