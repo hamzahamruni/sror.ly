@@ -78,7 +78,7 @@ https://templatemo.com/tm-557-grad-school
           ?>
             <div id="itemm" >
             <div class="item" style="text-align: center"   >
-              <img src="<?php echo $img;?>" alt="Course #2">
+            <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
               <div class="down-content" style="direction: rtl;">
                 <h4><?php echo $volunteering->name;?></h4>
                 <p>

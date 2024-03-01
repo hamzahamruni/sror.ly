@@ -298,13 +298,13 @@ function get_delivery()
     array_pop ( $delivery );
     return $delivery;
 }
-function insert_achievements($title,$detiles,$date,$img)
+function insert_achievements($title,$detiles,$date,$image)
 {
     global $connection;
     $sql_insert = "INSERT INTO
     achievements(title,detiles,date,img)
     VALUES
-    ('$title','$detiles','$date','$img')";
+    ('$title','$detiles','$date','$image')";
 
     if(mysqli_query($connection,$sql_insert))
     {

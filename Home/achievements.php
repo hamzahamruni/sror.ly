@@ -12,8 +12,9 @@ if(isset($_POST['insert_achievements']))
     && isset($date) && $date !=''
   )
   {
-    $upload_img_to_folder = upload_img_to_folder("img","uploads_img/");
-    $insert_achievements = insert_achievements($title,$detiles,$date,$upload_img_to_folder);
+    $image = file_get_contents($_FILES['img']["tmp_name"]);
+    $image = base64_encode($image);
+    $insert_achievements =  insert_achievements($title,$detiles,$date,$image);
     if($insert_achievements)
     {
       ?>
@@ -162,7 +163,8 @@ $volunteerings =  get_achievements();
           ?>
            <div id="itemm" >
            <div class="item" style="text-align: center"   >
-             <img src="<?php echo $img;?>" alt="Course #2">
+
+             <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
              <div class="down-content" style="direction: rtl;">
                <h4><?php echo $volunteering->title?></h4>
                <h4><?php echo $volunteering->date?></h4>

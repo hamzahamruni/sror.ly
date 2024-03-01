@@ -74,12 +74,10 @@ https://templatemo.com/tm-557-grad-school
          <?php
          foreach($volunteerings as $volunteering)
          {
-          $img ='Home/uploads_img/3.jpg';
-          $img = 'Home/uploads_img/'.$volunteering->img;
           ?>
            <div id="itemm" >
            <div class="item" style="text-align: center"   >
-             <img src="<?php echo $img;?>" alt="Course #2">
+           <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
              <div class="down-content" style="direction: rtl;">
                <h4><?php echo $volunteering->title?></h4>
                <h4><?php echo $volunteering->date?></h4>

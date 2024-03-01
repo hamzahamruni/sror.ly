@@ -11,8 +11,10 @@ if(isset($_POST['insert_activities']))
     && isset($detiles) && $detiles !=''
   )
   {
-    $upload_img_to_folder = upload_img_to_folder("img","uploads_img/");
-    $insert_activities = insert_activities($name,$link,$detiles,$upload_img_to_folder);
+    $image = file_get_contents($_FILES['img']["tmp_name"]);
+    $image = base64_encode($image);
+
+    $insert_activities = insert_activities($name,$link,$detiles,$image);
     if($insert_activities)
     {
       ?>
@@ -155,16 +157,13 @@ $volunteerings =  get_activities();
          <?php
          foreach($volunteerings as $volunteering)
          {
-          $img ='uploads_img/3.jpg';
-          $img = 'uploads_img/'.$volunteering->img;
           ?>
            <div id="itemm" >
            <div class="item" style="text-align: center"   >
-             <img src="<?php echo $img;?>" alt="Course #2">
+           <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
              <div class="down-content" style="direction: rtl;">
                <h4><?php echo $volunteering->name?></h4>
                <h6><?php echo $volunteering->link?></h6>
-
                 <hr>
                <p><?php echo $volunteering->detiles;?></p>
                <center>

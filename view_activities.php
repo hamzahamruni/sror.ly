@@ -63,7 +63,8 @@ https://templatemo.com/tm-557-grad-school
 
 
         <div class="col-md-12">
-            <img src='<?php echo 'Home/uploads_img/'.$activities->img; ?>' width="500" alt="Course #2">
+           <?php echo '<img src="data:image/jpeg;base64,'.$activities->img.'" width="500" />'; ?>
+
             <fieldset>
               <h4 style="color: black;" >
               <?php echo $activities->name; ?>
