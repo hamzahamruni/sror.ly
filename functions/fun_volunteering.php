@@ -506,4 +506,224 @@ function get_family_not_id_donation($id_donation,$type)
     array_pop ( $orphans_family );
     return $orphans_family;
 }
+
+
+function insert_product($name,$price,$detiles,$image)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    product(name,price,detiles,img)
+    VALUES
+    ('$name','$price','$detiles','$image')";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_product = mysqli_insert_id($connection);
+        return $id_product;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_product($id_product)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    product
+    WHERE id_product = '$id_product'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_product;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_product()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  product   ORDER BY id_product DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $data[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $data );
+    return $data;
+}
+function get_id_product($id_product)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  product   WHERE id_product = '$id_product' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $data = mysqli_fetch_object ( $query_view );
+    return $data;
+}
+
+function insert_product_res($id_product,$name,$phone,$address)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    product_res(id_product,name,phone,address)
+    VALUES
+    ('$id_product','$name','$phone','$address')";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_product_res = mysqli_insert_id($connection);
+        return $id_product_res;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_product_res($id_product)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  product_res   WHERE id_product = '$id_product' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $data = mysqli_fetch_object ( $query_view );
+    return $data;
+}
+function get_all_product_res()
+{
+    global $connection;
+    $sql_view = "SELECT pd.name,pd.price,pd.img,pdr.name  name_res,pdr.phone,pdr.address
+                 FROM  product pd,product_res pdr
+                WHERE pd.id_product=pdr.id_product
+                ORDER BY id_product_res DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $data[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $data );
+    return $data;
+}
+function get_all_kafala_res()
+{
+    global $connection;
+    $sql_view = "SELECT kf.name,kf.type,kf.img,kfr.name  name_res,kfr.phone,kfr.address
+                 FROM  kafala kf,kafala_res kfr
+                WHERE kf.id_kafala=kfr.id_kafala
+                ORDER BY id_kafala_res DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $data[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $data );
+    return $data;
+}
+
+
+
+function insert_kafala($name,$type,$detiles,$image)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    kafala(name,type,detiles,img)
+    VALUES
+    ('$name','$type','$detiles','$image')";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_kafala = mysqli_insert_id($connection);
+        return $id_kafala;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_kafala($id_kafala)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    kafala
+    WHERE id_kafala = '$id_kafala'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_kafala;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_kafala()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  kafala   ORDER BY id_kafala DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $data[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $data );
+    return $data;
+}
+function get_id_kafala($id_kafala)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  kafala   WHERE id_kafala = '$id_kafala' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $data = mysqli_fetch_object ( $query_view );
+    return $data;
+}
+function insert_kafala_res($id_kafala,$name,$phone,$address)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    kafala_res(id_kafala,name,phone,address)
+    VALUES
+    ('$id_kafala','$name','$phone','$address')";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_kafala = mysqli_insert_id($connection);
+        return $id_kafala;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+
+function insert_project($name,$detiles,$image)
+{
+    global $connection;
+    $sql_insert = "INSERT INTO
+    project(name,detiles,img)
+    VALUES
+    ('$name','$detiles','$image')";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        $id_project = mysqli_insert_id($connection);
+        return $id_project;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_project($id_project)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    project
+    WHERE id_project = '$id_project'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_project;
+    }
+    else
+    {
+        return false;
+    }
+}
+function get_project()
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  project   ORDER BY id_project DESC ";
+    $query_view = mysqli_query($connection, $sql_view);
+    while ( $data[] = mysqli_fetch_object ( $query_view ) );
+    array_pop ( $data );
+    return $data;
+}
 ?>

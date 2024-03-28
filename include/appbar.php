@@ -36,6 +36,18 @@
                 <li><a href="campaigns.php" class="external">الحملات</a></li>
                 </ul>
             </li>
+            <li class="has-submenu"><a href="#section2">     الخدمات </a>
+                <ul class="sub-menu">
+                <li><a href="project.php" class="external">مشاريع الدعم</a></li>
+
+                <li><a href="product.php" class="external"> المنتجات</a></li>
+                <li><a href="product_res.php" class="external"> حجوزات المنتجات</a></li>
+
+                <li><a href="kafala.php" class="external">الكفالات</a></li>
+                <li><a href="kafala_res.php" class="external">   الكفاله الكفالات </a></li>
+
+                </ul>
+            </li>
 
 
 

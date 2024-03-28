@@ -256,7 +256,7 @@ https://templatemo.com/tm-557-grad-school
               </div>
 
               <div class="item" >
-                <a href="#" style="color: #ffa5d2;">
+                <a href="kafala.php" style="color: #ffa5d2;">
                   <img src="assets/images/pp1.jpg" alt="Owl Image" >
                   <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الكفالات الشهرية </div>
                   <center>
@@ -267,7 +267,7 @@ https://templatemo.com/tm-557-grad-school
               </div>
 
               <div class="item" >
-                <a href="#" style="color: #ffa5d2;">
+                <a href="product.php" style="color: #ffa5d2;">
                   <img src="assets/images/pp1.jpg" alt="Owl Image" >
                   <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size:20px;color: white">الاستتمار</div>
                   <center>
@@ -377,24 +377,32 @@ https://templatemo.com/tm-557-grad-school
                 <em>  المؤسسة </em>
               </h4>
               </center>
-              <div class="counter" style="text-align: center,float: center;">
 
-                <div class="days" style="float: center;">
-                  <div ><?php echo count_donation();?></div>
-                  <span>عدد التبرعات</span>
+              <div class="counter" dir="rtl">
+
+                <div class="days">
+                <div ><?php echo count_vister();?></div>
+                <span>عدد الزوار</span>
                 </div>
 
-                <div class="days" style="float: center;">
+                <div class="hours">
                   <div ><?php echo count_hadia();?></div>
                   <span>عدد الهدايا</span>
                 </div>
 
-                <div class="days">
-                  <div ><?php echo count_vister();?></div>
+                <div class="minutes">
+                  <div class="value"><?php echo count_donation();?></div>
+                  <span>عدد التبرعات</span>
+                </div>
+
+                <div class="seconds">
+                  <div class="value"><?php echo count_vister();?></div>
                   <span>عدد الزوار</span>
                 </div>
 
-              </div>
+                </div>
+
+
             </div>
           </div>
         </div>
