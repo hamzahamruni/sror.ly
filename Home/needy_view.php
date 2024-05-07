@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
     include('../include/db_connection.php');
     include('../functions/fun_volunteering.php');
     if(isset($_POST['delete_needy']))
@@ -117,3 +120,9 @@ include('../include/appbar.php')
   ?>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

@@ -27,6 +27,7 @@
 
   </head>
   <?php
+$msg='';
 include('include/db_connection.php');
 include("functions/fun_volunteering.php");
 if(isset($_POST['insert_hadia']))
@@ -46,12 +47,7 @@ if(isset($_POST['insert_hadia']))
     $insert_hadia = insert_hadia($name,$phone,$name_to,$phone_to,$tag,$amount,$receipt);
     if($insert_hadia)
     {
-      ?>
-      <script>
-        alert("تمت الاضافة بنجاح");
-        </script>
-
-      <?php
+      header('Location: hadia.php?msg=success');
     }
     else
     {
@@ -82,12 +78,24 @@ if(isset($_POST['insert_hadia']))
   <section class="section contact" data-section="section4" style="padding-top: 100px;">
     <div class="container-fluid">
       <div class="row">
-
+      <?php
+      if(isset($_GET['msg']))
+      {
+      ?>
+      <div id="hideDiv">
+        تمت الاضافة بنجاح
+      </div>
+      <?php
+      }
+      ?>
         <div class="col-md-12">
           <center>
           <h3>🎁 هدية</h3>
           </center>
         </div>
+
+
+
         <div class="col-md-2 "></div>
         <div class="col-md-8">
           <form id="contact" action="" method="post" onsubmit="return validate_dontaion();">
@@ -203,6 +211,10 @@ if(isset($_POST['insert_hadia']))
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
+  $(function() {
+	setTimeout(function() { $("#hideDiv").fadeOut(1500); }, 5000)
+
+	})
       function validatePhone_to()
         {
             // regex pattern for phone number

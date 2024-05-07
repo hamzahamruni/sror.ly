@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
  include("../include/db_connection.php");
  include('../functions/fun_orphans_sponsorships.php');
  include('../functions/fun_volunteering.php');
@@ -139,3 +142,9 @@ include('../include/head.php')
     </script>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

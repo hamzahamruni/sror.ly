@@ -50,29 +50,29 @@ https://templatemo.com/tm-557-grad-school
 
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" dir="rtl">
             <fieldset>
-              <h4 style="color: black;" >
+              <h4 style="color: black;text-align: right;" >
               نص
               </h4>
             <br>
-            <p style="color: black;font-size:20px">
+            <p style="color: black;font-size:20px;text-align: right;">
             نص
             </p>
 
-            <h4 style="color: black;" >
+            <h4 style="color: black;text-align: right;" >
             نص
           </h4>
             <br>
-            <p style="color: black;">
+            <p style="color: black;text-align: right;">
             نص
             </p>
 
-            <h4 style="color: black;" >
+            <h4 style="color: black;text-align: right;" >
             نص
             </h4>
             <br>
-            <p style="color: black;">
+            <p style="color: black;text-align: right;">
             نص
             </p>
 

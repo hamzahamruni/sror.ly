@@ -57,7 +57,7 @@ https://templatemo.com/tm-557-grad-school
   include('appbar.php')
   ?>
 
-  <section class="section contact" data-section="section4" style="padding-top: 100px;">
+  <section class="section contact" data-section="section4" style="padding-top: 100px;text-aling">
     <div class="container-fluid">
       <div class="row">
 
@@ -71,11 +71,11 @@ https://templatemo.com/tm-557-grad-school
               </h4>
             <hr>
             <p style="color: black;font-size:20px">
-            <?php echo $activities->detiles; ?>
+            <?php echo  $activities->detiles;?>
             </p>
 
             <h4 style="color: black;" >
-                <a href= <?php echo 'https://www.'.$activities->link; ?> target="_blank" style="color: #ffa5d2;"> تسجيل <i class="fa fa-angle-double-up"></i></a>
+                <a href= <?php echo $activities->link; ?> target="_blank" style="color: #ffa5d2;"> تسجيل <i class="fa fa-angle-double-up"></i></a>
 
             </h4>
 

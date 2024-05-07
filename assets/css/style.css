@@ -50,6 +50,7 @@ table.print, .print th,.print td
   border: 3px solid #5f7d66;
 
 }
+#hideDiv{background:green; width:400px; margin:0 auto; color:#fff; padding:10px; text-align:center;}
 
 
 

@@ -63,7 +63,7 @@ function get_search_users($username,$name)
 {
     global $connection;
     $sql_view = "SELECT * FROM users WHERE
-    del = '0'
+    del = 0
     AND
     name LIKE '%$name%'
     AND
@@ -96,6 +96,21 @@ function have_username($username)
     if($user =  mysqli_fetch_object ( $query_view ) )
     {
         return $user;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_user($id_user)
+{
+    global $connection;
+    $sql_insert = "UPDATE  users set
+    del=1 WHERE id_user='$id_user'
+    ";
+    if(mysqli_query($connection,$sql_insert))
+    {
+        return $id_user;
     }
     else
     {

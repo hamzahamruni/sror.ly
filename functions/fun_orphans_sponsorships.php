@@ -84,6 +84,14 @@ function count_vister()
     $count =  mysqli_fetch_object ( $query_view );
     return $count->count_vister;
 }
+function count_activities()
+{
+    global $connection;
+    $sql_view = "SELECT IFNULL(COUNT(id_activities),0) as count_activities FROM activities";
+    $query_view = mysqli_query($connection, $sql_view);
+    $count =  mysqli_fetch_object ( $query_view );
+    return $count->count_activities;
+}
 function count_users()
 {
     global $connection;

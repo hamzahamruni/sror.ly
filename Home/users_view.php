@@ -4,6 +4,57 @@ if(isset($_SESSION['id_user']))
 {
     include('../include/db_connection.php');
     include('../functions/fun_users.php');
+    if(isset($_POST['delete_user']))
+    {
+      extract($_POST);
+      if(
+        isset($id_user) && $id_user !=''
+        && isset($power) && ($power =='A' ||  $power =='U' )
+
+      )
+      {
+        if($power =='A')
+        {
+          ?>
+            <script>
+            alert("لايمكنك الغاء مسوؤل");
+            </script>
+          <?php
+
+        }
+        else
+        {
+          $delete_user = delete_user($id_user);
+          if($delete_user)
+          {
+            ?>
+            <script>
+              alert("تمت الغاء بنجاح");
+              </script>
+
+            <?php
+          }
+          else
+          {
+            ?>
+            <script>
+            alert("يوجد خطأ");
+            </script>
+          <?php
+          }
+
+        }
+
+      }
+      else
+      {
+        ?>
+        <script>
+          alert("خطأ في ادخال البيانات");
+        </script>
+        <?php
+      }
+    }
     $users = (array) [];
     if(isset($_POST['serach_users']))
     {
@@ -22,6 +73,7 @@ if(isset($_SESSION['id_user']))
       $users = $users = get_users(0);
       //_______________________________________________________________
     }
+
 
 
     ?>
@@ -75,7 +127,7 @@ if(isset($_SESSION['id_user']))
                       <th>كلمة المرور</th>
                       <th>نوع المستخدم</th>
                       <th>صلاحيات المستخدم</th>
-
+                      <th>  اجراء</th>
                   </tr>
                   <?php
                   foreach($users as $user)
@@ -108,6 +160,25 @@ if(isset($_SESSION['id_user']))
                         }
                         ?>
                         </td>
+                        <form id="contact" action="" method="post" >
+                          <td>
+                          <?php
+                          if($user->power!='A')
+                          {
+                          ?>
+                              <div class="col-md-12">
+                                <fieldset>
+                                  <input  type="number" name="id_user" value="<?php echo $user->id_user;?>" hidden>
+                                  <input  type="text" name="power" value="<?php echo $user->power;?>" hidden>
+                                  <button style="background-color:red;color:white" type="submit" name="delete_user" id="form-submit" class="button">حدف</button>
+                                </fieldset>
+                              </div>
+                          <?php
+                          }
+                          ?>
+                          </td>
+                          </form>
+
                       </tr>
                       <?php
                   }

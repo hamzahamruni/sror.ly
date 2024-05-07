@@ -43,13 +43,13 @@ if(isset($_SESSION['id_user']))
                 </div>
 
                 <div class="minutes">
-                  <div class="value"><?php echo count_vister();?></div>
+                  <div ><?php echo count_vister();?></div>
                   <span>  زوار الموقع</span>
                 </div>
 
                 <div class="seconds">
-                  <div class="value"><?php echo count_hadia();?></div>
-                  <span>  الاقسام</span>
+                  <div ><?php echo count_activities();?></div>
+                  <span>عدد النشاطات</span>
                 </div>
 
               </div>
@@ -58,7 +58,7 @@ if(isset($_SESSION['id_user']))
         </div>
       </div>
     </div>
-    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   </section>
   <?php
   include('../include/footer.php')

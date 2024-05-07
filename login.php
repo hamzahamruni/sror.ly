@@ -22,7 +22,7 @@ include('include/db_connection.php');
     {
       $username = mysqli_real_escape_string($connection, $username);
       $sql_login = "SELECT id_user,name,username FROM users WHERE
-      username = '$username' AND password = '$password'";
+      username = '$username' AND password = '$password' AND del=0";
       $admin_set = mysqli_query($connection,$sql_login);
       if( $admin = mysqli_fetch_object($admin_set) )
       {

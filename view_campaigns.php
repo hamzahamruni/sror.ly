@@ -73,7 +73,7 @@ https://templatemo.com/tm-557-grad-school
             <?php echo $campaigns->detiles; ?>
             </p>
             <h4  >
-            <a href=<?php echo "select_donation.php";?> style="color: #ffa5d2;"> تبرع الان <i class="fa fa-angle-double-up"></i></a>
+            <a href=<?php echo "donation.php";?> style="color: #ffa5d2;"> تبرع الان <i class="fa fa-angle-double-up"></i></a>
             </h4>
             </fieldset>
           </div>

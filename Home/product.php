@@ -1,6 +1,10 @@
 
 
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
+
  include('../include/db_connection.php');
  include('../functions/fun_volunteering.php');
 if(isset($_POST['insert_product']))
@@ -164,7 +168,7 @@ $volunteerings =  get_product();
            <div id="itemm" >
            <div class="item" style="text-align: center"   >
 
-             <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
+             <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'" height="300"/>'; ?>
              <div class="down-content" style="direction: rtl;">
                <h4><?php echo $volunteering->name?></h4>
                <h4><?php echo $volunteering->price?> د.ل</h4>
@@ -196,3 +200,9 @@ $volunteerings =  get_product();
     ?>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

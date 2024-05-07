@@ -1,6 +1,44 @@
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
     include('../include/db_connection.php');
     include('../functions/fun_volunteering.php');
+    if(isset($_POST['delete_kafala_res']))
+    {
+      extract($_POST);
+      if(
+        isset($id_kafala_res) && $id_kafala_res !=''
+      )
+      {
+        $delete_kafala_res = delete_kafala_res($id_kafala_res);
+        if($delete_kafala_res)
+        {
+          ?>
+          <script>
+            alert("تمت الغاء بنجاح");
+            </script>
+
+          <?php
+        }
+        else
+        {
+          ?>
+          <script>
+          alert("يوجد خطأ");
+          </script>
+        <?php
+        }
+      }
+      else
+      {
+        ?>
+        <script>
+          alert("خطأ في ادخال البيانات");
+        </script>
+        <?php
+      }
+    }
 
 
     $deliverys = (array) [];
@@ -34,6 +72,7 @@ include('../include/appbar.php')
                     <th>  اسم الكافل</th>
                     <th> رقم الكافل</th>
                     <th> عنوان الكافل</th>
+                    <th>  اجراء</th>
                 </tr>
                 <?php
                 foreach($deliverys as $delivery)
@@ -57,6 +96,16 @@ include('../include/appbar.php')
                     <td><?php echo $delivery->name_res?>  </td>
                     <td><?php echo $delivery->phone?>  </td>
                     <td><?php echo $delivery->address?>  </td>
+                    <form id="contact" action="" method="post" >
+                    <td>
+                      <div class="col-md-12">
+                        <fieldset>
+                          <input  type="number" name="id_kafala_res" value="<?php echo $delivery->id_kafala_res;?>" hidden>
+                          <button style="background-color:red;color:white" type="submit" name="delete_kafala_res" id="form-submit" class="button">حدف</button>
+                        </fieldset>
+                      </div>
+                    </td>
+                    </form>
 
 
 
@@ -75,3 +124,9 @@ include('../include/appbar.php')
   ?>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

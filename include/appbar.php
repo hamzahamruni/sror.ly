@@ -30,7 +30,6 @@
             </li>
             <li class="has-submenu"><a href="#section2">     الاقسام </a>
                 <ul class="sub-menu">
-                <li><a href="volunteering.php" class="external"> الخدمات و النشطات </a></li>
                 <li><a href="achievements.php" class="external">الانجازات</a></li>
                 <li><a href="activities.php" class="external">النشاطات</a></li>
                 <li><a href="campaigns.php" class="external">الحملات</a></li>

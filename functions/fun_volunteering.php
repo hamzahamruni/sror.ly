@@ -507,7 +507,6 @@ function get_family_not_id_donation($id_donation,$type)
     return $orphans_family;
 }
 
-
 function insert_product($name,$price,$detiles,$image)
 {
     global $connection;
@@ -588,7 +587,7 @@ function get_product_res($id_product)
 function get_all_product_res()
 {
     global $connection;
-    $sql_view = "SELECT pd.name,pd.price,pd.img,pdr.name  name_res,pdr.phone,pdr.address
+    $sql_view = "SELECT pdr.id_product_res,pd.name,pd.price,pd.img,pdr.name  name_res,pdr.phone,pdr.address
                  FROM  product pd,product_res pdr
                 WHERE pd.id_product=pdr.id_product
                 ORDER BY id_product_res DESC ";
@@ -600,7 +599,7 @@ function get_all_product_res()
 function get_all_kafala_res()
 {
     global $connection;
-    $sql_view = "SELECT kf.name,kf.type,kf.img,kfr.name  name_res,kfr.phone,kfr.address
+    $sql_view = "SELECT kfr.id_kafala_res,kf.name,kf.type,kf.img,kfr.name  name_res,kfr.phone,kfr.address
                  FROM  kafala kf,kafala_res kfr
                 WHERE kf.id_kafala=kfr.id_kafala
                 ORDER BY id_kafala_res DESC ";
@@ -609,8 +608,6 @@ function get_all_kafala_res()
     array_pop ( $data );
     return $data;
 }
-
-
 
 function insert_kafala($name,$type,$detiles,$image)
 {
@@ -726,4 +723,39 @@ function get_project()
     array_pop ( $data );
     return $data;
 }
+function delete_product_res($id_product_res)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    product_res
+    WHERE id_product_res = '$id_product_res'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_product_res;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_kafala_res($id_kafala_res)
+{
+    global $connection;
+    $sql_del= "DELETE FROM
+    kafala_res
+    WHERE id_kafala_res = '$id_kafala_res'
+    ";
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_kafala_res;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 ?>

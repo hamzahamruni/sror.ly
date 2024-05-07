@@ -1,5 +1,8 @@
 
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
  include('../include/db_connection.php');
  include('../functions/fun_volunteering.php');
 if(isset($_POST['insert_delivery']))
@@ -156,3 +159,9 @@ if(isset($_POST['insert_delivery']))
     ?>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

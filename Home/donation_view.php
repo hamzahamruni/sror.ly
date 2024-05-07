@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['id_user']))
+{
     include('../include/db_connection.php');
     include('../functions/fun_volunteering.php');
     if(isset($_POST['delete_donation']))
@@ -102,10 +105,9 @@ include('../include/appbar.php')
                     <td><?php echo $donation->receipt?>  </td>
                     <td><?php echo $donation->date_create?></td>
                     <?php
-                    $familys = get_family_not_id_donation($donation->id_donation,$donation->type)
+                    //$familys = get_family_not_id_donation($donation->id_donation,$donation->type)
                     ?>
                    <form id="contact" action="" method="post" >
-
                     <td>
                       <div class="col-md-12">
                         <fieldset>
@@ -130,3 +132,9 @@ include('../include/appbar.php')
   ?>
 </body>
 </html>
+<?php
+}
+else
+{
+  header('Location: ../login.php');
+}

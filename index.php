@@ -305,7 +305,7 @@ https://templatemo.com/tm-557-grad-school
           ?>
             <div id="itemm" >
             <div class="item" style="text-align: center"   >
-              <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
+              <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'" height="300"/>'; ?>
               <div class="down-content" style="direction: rtl;">
                 <h4><?php echo $volunteering->name;?></h4>
                 <p>
@@ -336,12 +336,11 @@ https://templatemo.com/tm-557-grad-school
          <?php
          foreach($campaigns as $campaign)
          {
-          $img ='Home/uploads_img/3.jpg';
           $img = 'Home/uploads_img/'.$campaign->img;
           ?>
            <div id="itemm" >
            <div class="item" style="text-align: center"   >
-           <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'"/>'; ?>
+           <?php echo '<img src="data:image/jpeg;base64,'.$campaign->img.'" height="300"/>'; ?>
              <div class="down-content" style="direction: rtl;">
                <h4><?php echo $campaign->name?></h4>
                 <hr>
@@ -381,23 +380,23 @@ https://templatemo.com/tm-557-grad-school
               <div class="counter" dir="rtl">
 
                 <div class="days">
-                <div ><?php echo count_vister();?></div>
+                <div  ><?php echo count_vister();?></div>
                 <span>عدد الزوار</span>
                 </div>
 
-                <div class="hours">
-                  <div ><?php echo count_hadia();?></div>
+                <div  class="hours">
+                  <div  ><?php echo count_hadia();?></div>
                   <span>عدد الهدايا</span>
                 </div>
 
-                <div class="minutes">
-                  <div class="value"><?php echo count_donation();?></div>
+                <div class="minutes"  >
+                  <div ><?php echo count_donation();?></div>
                   <span>عدد التبرعات</span>
                 </div>
 
-                <div class="seconds">
-                  <div class="value"><?php echo count_vister();?></div>
-                  <span>عدد الزوار</span>
+                <div class="seconds" <?php if(count_activities()==0) echo 'style="padding-top:1px"'?>  >
+                  <div ><?php echo count_activities();?></div>
+                  <span>عدد النشاطات</span>
                 </div>
 
                 </div>
