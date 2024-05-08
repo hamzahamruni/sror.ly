@@ -156,7 +156,7 @@ if(
 
                     }
                     ?>
-                  <button name="insert_kafala_res_2" value="insert_kafala_res_2" type="submit" id="form-submit" class="button">تاكيد الحجر</button>
+                  <button name="insert_kafala_res_2" value="insert_kafala_res_2" type="submit" id="form-submit" class="button">تاكيد الكفالة</button>
                 </fieldset>
               </div>
             </center>

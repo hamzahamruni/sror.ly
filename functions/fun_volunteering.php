@@ -541,6 +541,33 @@ function delete_product($id_product)
         return false;
     }
 }
+function edit_product($id_product,$name,$price,$detiles,$image)
+{
+    global $connection;
+    if($image!==null)
+    {
+        $sql_del= "UPDATE product SET
+        name='$name', price='$price', detiles='$detiles', img='$image'
+        WHERE id_product = '$id_product'
+        ";
+    }
+    else
+    {
+        $sql_del= "UPDATE product SET
+        name='$name', price='$price', detiles='$detiles'
+        WHERE id_product = '$id_product'
+        ";
+    }
+
+    if(mysqli_query($connection,$sql_del))
+    {
+        return $id_product;
+    }
+    else
+    {
+        return false;
+    }
+}
 function get_product()
 {
     global $connection;
@@ -721,6 +748,14 @@ function get_project()
     $query_view = mysqli_query($connection, $sql_view);
     while ( $data[] = mysqli_fetch_object ( $query_view ) );
     array_pop ( $data );
+    return $data;
+}
+function get_id_project($id_project)
+{
+    global $connection;
+    $sql_view = "SELECT * FROM  project   WHERE id_project = '$id_project' ";
+    $query_view = mysqli_query($connection, $sql_view);
+    $data = mysqli_fetch_object ( $query_view );
     return $data;
 }
 function delete_product_res($id_product_res)

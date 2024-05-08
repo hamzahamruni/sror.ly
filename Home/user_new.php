@@ -16,18 +16,19 @@ if(isset($_SESSION['id_user']))
     && isset($username) && $username!=''
     && isset($password) && $password!=''
     && isset($power) && $power!=''
+    && ($power=='A' || $power=='U')
     )
     {
-      if(! isset($hadia)) $hadia =0;
       if(! isset($donation)) $donation =0;
+      if(! isset($hadia)) $hadia =0;
       if(! isset($delivery)) $delivery =0;
       if(! isset($needy)) $needy =0;
-      if(! isset($needy)) $needy =0;
-      if(! isset($volunteering)) $volunteering =0;
+      if(! isset($sections)) $sections =0;
+      if(! isset($services)) $services =0;
       if(! isset($users)) $users =0;
       if(! have_username($username))
       {
-        $id_user = insert_user($name,$phone,$username,$password,$power,$hadia,$donation,$delivery,$volunteering,$users);
+        $id_user = insert_user($name,$phone,$username,$password,$power,$donation,$hadia,$delivery,$needy,$sections,$services,$users);
         if($id_user)
         {
           $msg='';
@@ -97,35 +98,35 @@ if(isset($_SESSION['id_user']))
                     <div class="col-md-3">
                         <label >اسم الموظف</label>
                         <fieldset>
-                            <input name="name" id="name" type="text" class="form-control"  placeholder="اسم الموظف "   maxlength="100" required="">
+                            <input maxlength="255" name="name" id="name" type="text" class="form-control"  placeholder="اسم الموظف "   maxlength="100" required="">
                         </fieldset>
                     </div>
 
                     <div class="col-md-3">
                         <label> رقم الهاتف </label>
                         <fieldset>
-                            <input name="phone" id="phone" type="text" class="form-control" placeholder=" رقم  الهاتف "  maxlength="14" required="">
+                            <input maxlength="15" name="phone" id="phone" type="text" class="form-control" placeholder=" رقم  الهاتف "  maxlength="14" required="">
                         </fieldset>
                     </div>
 
                     <div class="col-md-3">
                         <label>اسم المستخدم</label>
                         <fieldset>
-                            <input name="username" id="username" type="text" class="form-control"  placeholder="اسم المستخدم"   maxlength="50" required="">
+                            <input maxlength="255" name="username" id="username" type="text" class="form-control"  placeholder="اسم المستخدم"   maxlength="50" required="">
                         </fieldset>
                     </div>
 
                     <div class="col-md-3">
                         <label>كلمة المرور</label>
                         <fieldset>
-                            <input name="password" id="password" type="password" class="form-control"  placeholder="كلمة المرور"   maxlength="50" required="">
+                            <input maxlength="255" name="password" id="password" type="password" class="form-control"  placeholder="كلمة المرور"   maxlength="50" required="">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
                       <fieldset>
                         <label> نوع المستخدم</label>
-                          <select name="power" class="form-control" id="power" required="">
+                          <select name="power" class="form-control" id="power" required="" onchange="set_user_power()">
                           <option class="form-control">   </option>
                           <option class="form-control"  value="A">  مسوؤل </option>
                           <option class="form-control"  value="U">   موظف </option>
@@ -134,7 +135,7 @@ if(isset($_SESSION['id_user']))
                     </div>
 
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="user_permissions">
                       <hr>
                       <center>
                       <label> الصلاحيات</label>
@@ -142,26 +143,35 @@ if(isset($_SESSION['id_user']))
                       <fieldset>
                         <br>
 
-                        <label> إدارة الهدايا
-                          <input name="hadia" value="1" type="checkbox" class="form-control col-md-3" id="sponsor" style="display: inline;">
-                        </label>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                         <label> إدارة التبرعات
-                          <input name="donation" value="1" type="checkbox" class="form-control col-md-3" id="donation" style="display: inline;">
+                          <input name="donation" value="1" type="checkbox" class="form-control col-md-2" id="donation" style="display: inline;">
                         </label>
+
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                        <label> إدارة الهدايا
+                          <input name="hadia" value="1" type="checkbox" class="form-control col-md-2" id="sponsor" style="display: inline;">
+                        </label>
+
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                         <label> إدارة المندوبين
-                          <input name="delivery" value="1" type="checkbox" class="form-control col-md-3" id="delivery" style="display: inline;">
+                          <input name="delivery" value="1" type="checkbox" class="form-control col-md-2" id="delivery" style="display: inline;">
                         </label>
 
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                         <label> إدارة المحتاجين
-                          <input name="needy" value="1" type="checkbox" class="form-control col-md-3" id="needy" style="display: inline;">
+                          <input name="needy" value="1" type="checkbox" class="form-control col-md-2" id="needy" style="display: inline;">
+                        </label>
+
+                        <br>
+
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                        <label> إدارة الاقسام
+                          <input name="sections" value="1" type="checkbox" class="form-control col-md-2" id="sections" style="display: inline;">
                         </label>
 
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                         <label> إدارة الاقسام
-                          <input name="volunteering" value="1" type="checkbox" class="form-control col-md-3" id="volunteering" style="display: inline;">
+                          <input name="services" value="1" type="checkbox" class="form-control col-md-2" id="services" style="display: inline;">
                         </label>
 
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -188,6 +198,20 @@ if(isset($_SESSION['id_user']))
   <?php
   include('../include/footer.php')
   ?>
+  <script>
+    function set_user_power()
+    {
+
+      if(document.getElementById("power").value==="A")
+      {
+        document.getElementById("user_permissions").style.display="none"
+      }
+      else{
+        document.getElementById("user_permissions").style.display="block"
+      }
+
+    }
+  </script>
 </body>
 </html>
 <?php

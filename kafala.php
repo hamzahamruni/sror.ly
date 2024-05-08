@@ -100,7 +100,7 @@ https://templatemo.com/tm-557-grad-school
                 <form id="contact" action="kafala_res.php" method="post" >
                   <input  type="number" name="id_kafala" value="<?php echo $volunteering->id_kafala;?>" hidden>
 
-                  <button name="insert_kafala_res" value="insert_kafala_res" type="submit" style="color: #ffa5d2;border: 0px;background-color: white;">حجر الآن <i class="fa fa-angle-double-up"></i></button>
+                  <button name="insert_kafala_res" value="insert_kafala_res" type="submit" style="color: #ffa5d2;border: 0px;background-color: white;"> اكفلني <i class="fa fa-angle-double-up"></i></button>
 
                 </form>
                </div>

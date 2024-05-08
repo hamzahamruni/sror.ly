@@ -42,23 +42,20 @@ https://templatemo.com/tm-557-grad-school
   </head>
 <body >
 
-     <?php
-      include('appbar.php')
-      ?>
+  <?php
+  include('appbar.php')
+  ?>
 
-    <header class="main-header clearfix" dir="rtl" style="width:auto;top:50%;right:-20;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
+  <header class="main-header clearfix" dir="rtl" style="width:auto;top:50%;right:-20;height:auto;border-radius: 30px;border: 3px solid white;" dir="rtl">
+    <nav>
+      <ul class="main-menu">
+        <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
+        <li ><a href="select_donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <nav  >
-        <ul class="main-menu">
-          <li ><a href="hadia.php" class="external" style="margin-left: 0px" >  هدية 🎁</a></li>
-          <li ><a href="select_donation.php" class="external" style="margin-left: 0px"> تبرع سريع 👋</a></li>
-        </ul>
-      </nav>
-    </header>
-
-
-  <section class="section courses" data-section="section4" dir="ltr">
-
+  <section class="section courses" data-section="section4" dir="ltr" style="padding-bottom: 0;">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
@@ -70,7 +67,7 @@ https://templatemo.com/tm-557-grad-school
           </div>
         </div>
 
-        <div class="owl-carousel owl-theme"  style="padding-bottom: 100px">
+        <div class="owl-carousel owl-theme"  style="padding-bottom: 0">
          <?php
          foreach($volunteerings as $volunteering)
          {
@@ -101,9 +98,51 @@ https://templatemo.com/tm-557-grad-school
         </div>
       </div>
     </div>
-
   </section>
 
+  <?php
+    $volunteerings =  get_project();
+  ?>
+
+<section class="section courses" data-section="section4" dir="ltr">
+  <br><br><br><br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h3>
+             دعم المشاريع
+            </h2>
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme">
+         <?php
+         foreach($volunteerings as $volunteering)
+         {
+          $img ='uploads_img/3.jpg';
+          $img = 'uploads_img/'.$volunteering->img;
+          ?>
+           <div id="itemm" >
+           <div class="item" style="text-align: center"   >
+
+             <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'" height="300"/>'; ?>
+             <div class="down-content" style="direction: rtl;">
+               <h4><?php echo $volunteering->name?></h4>
+                <hr>
+               <p>
+                  <?php echo substr($volunteering->detiles, 0, 30);?>
+                <a href=<?php echo "view_project.php?id_project=".$volunteering->id_project;?> style="color: #ffa5d2;"> المزيد <i class="fa fa-angle-double-left"></i></a>
+                </p>
+             </div>
+           </div>
+           </div>
+          <?php
+         }
+          ?>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
       <div class="container">

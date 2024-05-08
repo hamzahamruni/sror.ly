@@ -1,5 +1,5 @@
 <?php
-function insert_user($name,$phone,$username,$password,$power,$hadia,$donation,$volunteering,$users)
+function insert_user($name,$phone,$username,$password,$power,$donation,$hadia,$delivery,$needy,$sections,$services,$users)
 {
     global $connection;
     $sql_insert = "INSERT INTO
@@ -10,7 +10,7 @@ function insert_user($name,$phone,$username,$password,$power,$hadia,$donation,$v
     if(mysqli_query($connection,$sql_insert))
     {
         $id_user = mysqli_insert_id($connection);
-        insert_user_permissions($id_user,$hadia,$donation,$volunteering,$users);
+        insert_user_permissions($id_user,$donation,$hadia,$delivery,$needy,$sections,$services,$users);
         return $id_user;
     }
     else
@@ -18,16 +18,15 @@ function insert_user($name,$phone,$username,$password,$power,$hadia,$donation,$v
         return false;
     }
 }
-function insert_user_permissions($id_user,$hadia,$donation,$volunteering,$users)
+function insert_user_permissions($id_user,$donation,$hadia,$delivery,$needy,$sections,$services,$users)
 {
     global $connection;
     $sql_insert = "INSERT INTO
-    user_permissions(id_user,hadia,donation,volunteering,users)
+    user_permissions(id_user,donation,hadia,delivery,needy,sections,services,users)
     VALUES
-    ('$id_user','$hadia','$donation','$volunteering','$users')";
+    ($id_user,$donation,$hadia,$delivery,$needy,$sections,$services,$users)";
     if(mysqli_query($connection,$sql_insert))
     {
-        $id_user = mysqli_insert_id($connection);
         return $id_user;
     }
     else

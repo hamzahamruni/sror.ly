@@ -46,19 +46,46 @@ if(isset($_POST['insert_product']))
     <?php
   }
 }
-if(isset($_POST['delete_product']))
+//_____________________________________________________
+//              edit تعديل
+if(isset($_POST['get_product']))
 {
   extract($_POST);
   if(
     isset($id_product) && $id_product !=''
   )
   {
-    $delete = delete_product($id_product);
-    if($delete)
+    $product = get_id_product($id_product);
+
+  }
+}
+if(isset($_POST['edit_product']))
+{
+  extract($_POST);
+  if(
+    isset($id_product) && $id_product !=''
+    && isset($name) && $name !=''
+    && isset($price) && $price !=''
+    && isset($detiles) && $detiles !=''
+  )
+ {
+  if(isset($_FILES['img']["tmp_name"]) && $_FILES['img']["tmp_name"])
+  {
+    $image = file_get_contents($_FILES['img']["tmp_name"]);
+    $image = base64_encode($image);
+  }
+  else
+  {
+    $image = null;
+  }
+
+
+   $edit = edit_product($id_product,$name,$price,$detiles,$image);
+    if($edit)
     {
       ?>
       <script>
-        alert("تمت الغاء بنجاح");
+        alert("تمت تعديل بنجاح");
         </script>
 
       <?php
@@ -81,6 +108,7 @@ if(isset($_POST['delete_product']))
     <?php
   }
 }
+//_____________________________________________________
 $volunteerings =  get_product();
 
 ?>
@@ -109,26 +137,26 @@ $volunteerings =  get_product();
                 <div class="col-md-6">
                   <fieldset>
                   <label>  اسم المنتج </label>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="اسم المنتج" maxlength="200" required="">
+                    <input name="name" type="text" <?php if(isset($product->name)) echo 'value="'.$product->name.'"'?> class="form-control" id="name" placeholder="اسم المنتج" maxlength="200" required="">
                   </fieldset>
                 </div>
                 <div class="col-md-6">
                   <fieldset>
                   <label>  سعر المنتج </label>
-                    <input name="price" type="number" class="form-control" id="price" placeholder="سعر المنتج" maxlength="200" required="">
+                    <input name="price" type="number" <?php if(isset($product->price)) echo 'value="'.$product->price.'"'?> class="form-control" id="price" placeholder="سعر المنتج" maxlength="200" required="">
                   </fieldset>
                 </div>
                <div class="col-md-6">
                   <fieldset>
                     <label > صورة المنتج</label>
-                    <input name="img" type="file" class="form-control" accept="image" id="img" value="" required="">
+                    <input name="img" type="file"  <?php if(isset($product->img)) {echo 'value="'.$product->img.'"';}else{echo 'required="true"';}?> class="form-control" accept="image" id="img">
                   </fieldset>
                 </div>
 
               <div class="col-md-6">
                		<fieldset>
                   <label>      التفاصيل  </label>
-                  <textarea name="detiles" class="form-control" id="detiles" placeholder="  التفاصيل " required="" rows="4" cols="4"></textarea>
+                  <textarea name="detiles" class="form-control" <?php if(isset($product->detiles)) echo 'value="'.$product->detiles.'"'?>  id="detiles" placeholder="  التفاصيل " style="color:black;" required="" rows="4" cols="4"><?php if(isset($product->detiles)) echo $product->detiles;?></textarea>
                   </fieldset>
                 </div>
 
@@ -136,7 +164,25 @@ $volunteerings =  get_product();
               <div class="col-md-6">
 
                 <fieldset>
-                  <button name="insert_product" value="insert_product" type="submit" id="form-submit" class="button"> حفظ المنتج </button>
+                  <?php
+                  //_____________________________________________________
+                  //                      edit تعديل
+                  if(isset($product->id_product))
+                  {
+                    ?>
+                    <input type="number" value=<?php echo $product->id_product;?> name='id_product' hidden />
+                      <button name="edit_product" value="edit_product" type="submit" id="form-submit" class="button"> تعديل المنتج </button>
+                    <?php
+                  }
+                  //_____________________________________________________
+                  else
+                  {
+                    ?>
+                      <button name="insert_product" value="insert_product" type="submit" id="form-submit" class="button"> حفظ المنتج </button>
+
+                    <?php
+                  }
+                  ?>
                 </fieldset>
               </div>
 
@@ -166,24 +212,48 @@ $volunteerings =  get_product();
           $img = 'uploads_img/'.$volunteering->img;
           ?>
            <div id="itemm" >
-           <div class="item" style="text-align: center"   >
+              <div class="item" style="text-align: center"   >
 
-             <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'" height="300"/>'; ?>
-             <div class="down-content" style="direction: rtl;">
-               <h4><?php echo $volunteering->name?></h4>
-               <h4><?php echo $volunteering->price?> د.ل</h4>
-                <hr>
-               <p><?php echo $volunteering->detiles;?></p>
-               <center>
-               <form id="contact" action="" method="post" >
-                    <div class="col-md-12">
-                      <fieldset>
-                        <input  type="number" name="id_product" value="<?php echo $volunteering->id_product;?>" hidden>
-                        <button style="background-color:red;color:white" type="submit" name="delete_product" id="form-submit" class="button">حدف</button>
-                      </fieldset>
+                <?php echo '<img src="data:image/jpeg;base64,'.$volunteering->img.'" height="300"/>'; ?>
+                <div class="down-content" style="direction: rtl;">
+                  <h4><?php echo $volunteering->name?></h4>
+                  <h4><?php echo $volunteering->price?> د.ل</h4>
+                    <hr>
+                  <p><?php echo $volunteering->detiles;?></p>
+                  <center>
+                  <div class='row'>
+                  <?php
+                  //_____________________________________________________
+                  //                      edit تعديل
+                  ?>
+                    <div class="col-md-6">
+
+                      <form id="contact" action="" method="post" style="display: inline" >
+                        <fieldset>
+                          <input  type="number" name="id_product" value="<?php echo $volunteering->id_product;?>" hidden>
+                          <button style="background-color:#ffa5d2;color:white" type="submit" name="get_product" id="form-submit" class="button">تعديل</button>
+                        </fieldset>
+
+                      </form>
                     </div>
+                  <?php
+                  //_____________________________________________________
+                  //                      edit تعديل
+                  ?>
 
+                  <div class="col-md-6">
+                  <form id="contact" action="" method="post" style="display: inline" >
+
+                  <fieldset>
+                    <input  type="number" name="id_product" value="<?php echo $volunteering->id_product;?>" hidden>
+                    <button style="background-color:red;color:white" type="submit" name="delete_product" id="form-submit" class="button">حدف</button>
+
+                  </fieldset>
                   </form>
+
+                  </div>
+            </div>
+
               </center>
              </div>
            </div>
